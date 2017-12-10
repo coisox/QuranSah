@@ -1,0 +1,19 @@
+#Head {
+    background: url(../../../../verification/img/banner_back.svg);
+}
+#Head .SiteSearch {
+    margin-top: 13px;
+}
+#Head .SiteSearch #Form_Search {
+	border-radius: 4px;
+}
+body > #Frame > .Head {
+    padding: 6px 0 0px 0;
+}
+.SiteMenu {
+    position: absolute;
+    top: 21px;
+}
+.SiteMenu a {
+	display: none;
+}

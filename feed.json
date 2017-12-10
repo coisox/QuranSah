@@ -1,0 +1,84 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "quransah",
+    "description": "",
+    "home_page_url": "http://127.0.0.1/quransah",
+    "feed_url": "http://127.0.0.1/quransah/feed.json",
+    "user_comment": "",
+    "icon": "http://127.0.0.1/quransah/media/website/quransah_brand.png",
+    "author": {
+        "name": "Admin"
+    },
+    "items": [
+        {
+            "id": "http://127.0.0.1/quransah/program-pengajian-pondok-universiti-musim-ke-4/",
+            "url": "http://127.0.0.1/quransah/program-pengajian-pondok-universiti-musim-ke-4/",
+            "title": "Program Pengajian Pondok Universiti Musim ke-4",
+            "content_html": "<p><strong>Penceramah :</strong> Ustaz Sheikh Abu Zaki bin Yusuf as Sanggafuri al Hadhrami</p>\n<p><strong>Kitab:</strong> Penawar bagi hati<br>(karangan Sheikh Abd Qadir al Mandili)</p>\n<p><strong>Tarikh &amp; Hari :</strong> 20 April 2017 || Khamis</p>\n<p><strong>Masa:</strong> 2.15 ptg ~ 4.00 ptg</p>\n<p><strong>Tempat :</strong> Dewan Seminar al Farabi, Masjid Sultan Ibrahim, UTHM</p>\n<p>Muslimin muslimat dijemput hadir.</p>\n<p>Mohon sebar-sebarkan.</p>",
+            "image": "http://127.0.0.1/quransah/media/posts/8/18056179_1907003882913978_8013252876745076790_o.jpg",
+            "author": {
+                "name": "Admin"
+            },
+            "tags": [
+            ],
+            "date_published": "2017-12-10T21:51:05+08:00",
+            "date_modified": "2017-12-10T21:51:05+08:00"
+        },
+        {
+            "id": "http://127.0.0.1/quransah/program-townhall-2017-institut-ahli-sunnah-wal-jamaah/",
+            "url": "http://127.0.0.1/quransah/program-townhall-2017-institut-ahli-sunnah-wal-jamaah/",
+            "title": "Program Townhall 2017 Institut Ahli Sunnah Wal Jamaah",
+            "content_html": "<p><strong>Tarikh :</strong> 25 Julai 2017 (Selasa)<br><strong>Masa :</strong> 10.00 pagi<br><strong>Tempat :</strong> Dewan Bankuet, Dewan Sultan Ibrahim, UTHM</p>\n<div class=\"text_exposed_show\">\n<p>Program ini telah membentangkan kompilasi kertas kerja yang dijalankan oleh Institut Ahli Sunnah Wal Jamaah.</p>\n<p><img src=\"http://127.0.0.1/quransah/media/posts/7/20369062_1967824156831950_1876829544282954681_o.jpg\" alt=\"\" width=\"2048\" height=\"1365\"></p>\n<p><img src=\"http://127.0.0.1/quransah/media/posts/7/20248268_1967824026831963_6996938204091568791_o.jpg\" alt=\"\" width=\"2048\" height=\"1365\"></p>\n<p><img src=\"http://127.0.0.1/quransah/media/posts/7/20248325_1967822143498818_9004315525070036568_o.jpg\" alt=\"\" width=\"2048\" height=\"1365\"></p>\n</div>",
+            "image": "http://127.0.0.1/quransah/media/posts/7/20257992_1967821900165509_4060537324549046200_n.jpg",
+            "author": {
+                "name": "Admin"
+            },
+            "tags": [
+            ],
+            "date_published": "2017-12-10T21:48:15+08:00",
+            "date_modified": "2017-12-10T21:48:15+08:00"
+        },
+        {
+            "id": "http://127.0.0.1/quransah/majlis-silaturahim-hari-raya-zikir-dan-tausiah-perdana/",
+            "url": "http://127.0.0.1/quransah/majlis-silaturahim-hari-raya-zikir-dan-tausiah-perdana/",
+            "title": "Majlis Silaturahim Hari Raya, Zikir dan Tausiah Perdana",
+            "content_html": "<p><strong>Tempat :</strong> Masjid Al-Hayat, Kg Semaseh, Panchor, Muar<br><strong>Masa :</strong> 7.00 malam hingga 11.00 malam<span class=\"text_exposed_show\"><br><strong>Tarikh :</strong> 22 Julai 2017</span></p>\n<p><img src=\"http://127.0.0.1/quransah/media/posts/6/20258343_1967909193490113_6132117027287880949_n.jpg\" alt=\"\" width=\"960\" height=\"640\"></p>\n<p><img src=\"http://127.0.0.1/quransah/media/posts/6/20430136_1967909100156789_2963048842735293176_n.jpg\" alt=\"\" width=\"960\" height=\"640\"></p>\n<p><img src=\"http://127.0.0.1/quransah/media/posts/6/20292752_1967908823490150_4044697443498654215_n.jpg\" alt=\"\" width=\"960\" height=\"640\"></p>",
+            "image": "http://127.0.0.1/quransah/media/posts/6/20287014_1967908990156800_3778438978741830899_o.jpg",
+            "author": {
+                "name": "Admin"
+            },
+            "tags": [
+            ],
+            "date_published": "2017-12-10T21:46:28+08:00",
+            "date_modified": "2017-12-10T21:46:28+08:00"
+        },
+        {
+            "id": "http://127.0.0.1/quransah/memo-pondok-universiti/",
+            "url": "http://127.0.0.1/quransah/memo-pondok-universiti/",
+            "title": "Program Pengajian Pondok Universiti Musim ke-4",
+            "content_html": "<p>Assalamualaikum semua.</p>\n<p>In shaa Allah Khamis ini Program Pengajian Pondok Universiti Musim ke-4 akan diteruskan bersama :</p>\n<div class=\"text_exposed_show\">\n<p><strong>Penceramah :</strong> Ustaz Syeikh Abu Zaki bin Yusof As Sanggafuri Al Hadrami</p>\n<p><strong>Kitab :</strong> PENAWAR BAGI HATI</p>\n<p><strong>Tarikh &amp; Hari :</strong> 16 November 2017 || Khamis</p>\n<p><strong>Masa :</strong> 2.30 Ptg ~ 4.00 ptg</p>\n<p><strong>Tempat :</strong> Dewan Seminar Al Farabi, Masjid Sultan Ibrahim UTHM</p>\n<p>Muslimin muslimat dijemput hadir.</p>\n<p>Mohon sebar-sebarkan</p>\n</div>",
+            "image": "http://127.0.0.1/quransah/media/posts/2/16864060_1875783546036012_4943442844733211086_n.jpg",
+            "author": {
+                "name": "Admin"
+            },
+            "tags": [
+            ],
+            "date_published": "2017-12-10T14:02:14+08:00",
+            "date_modified": "2017-12-10T15:33:49+08:00"
+        },
+        {
+            "id": "http://127.0.0.1/quransah/zikir-dan-forum-perdana/",
+            "url": "http://127.0.0.1/quransah/zikir-dan-forum-perdana/",
+            "title": "Zikir dan Forum Perdana",
+            "content_html": "<p><span id=\"fbPhotoSnowliftCaption\" class=\"fbPhotosPhotoCaption\" tabindex=\"0\" data-ft=\"{&quot;tn&quot;:&quot;K&quot;}\"><span class=\"hasCaption\">Semua muslimin dan muslimat dijemput hadir.</span></span></p>",
+            "image": "http://127.0.0.1/quransah/media/posts/1/24291488_2027223070892058_8130423224854875383_o.jpg",
+            "author": {
+                "name": "Admin"
+            },
+            "tags": [
+            ],
+            "date_published": "2017-12-10T13:56:13+08:00",
+            "date_modified": "2017-12-10T15:39:03+08:00"
+        }
+    ]
+}

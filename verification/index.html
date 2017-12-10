@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Quransah Verification Assistant</title>
+		
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <link href="lib/gridster/jquery.gridster.min.css" rel="stylesheet">
+        <link href="css/modal.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+	</head>
+
+	<body>			
+        <div class="banner">
+			<div class="container">
+				<img src="img/quransah_brand.png" style="float:left;">
+				<span>INJIN CARIAN</span>
+				<span>UTAMA</span>
+			</div>
+		</div>
+
+        <div class="page active" id="Dashboard">
+            <div class="gridster">
+                <ul>
+                    <li data-row="1" data-col="1" data-sizex="2" data-sizey="2"><div class="chartTitle">Surah Tertinggi Dicari</div><div class="piePadding"><canvas id="chartMostVerified" width="1" height="1"></canvas></div></li>
+                    <li data-row="1" data-col="3" data-sizex="2" data-sizey="1" class="chartCard1"><div class="chartTitle">Jumlah Soalan Forum</div><div class="chartNumber">20,000</div></li>
+                    <li data-row="2" data-col="3" data-sizex="2" data-sizey="1" class="chartCard2"><div class="chartTitle">Jumlah Soalan Berbalas</div><div class="chartNumber">15,000</div></li>
+                    <li data-row="2" data-col="5" data-sizex="2" data-sizey="1" class="chartCard3"><div class="chartTitle">Jumlah Soalan Baru</div><div class="chartNumber">5,000</div></li>
+                    <li data-row="1" data-col="5" data-sizex="2" data-sizey="1" class="chartQuote"></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="searchpanel sticky" id="Search">
+            <textarea class="searchbox arabic" autocomplete="off" rows="1"></textarea>
+            <button onclick="search('new')">Cari</button>
+			
+			<br><br>
+			<div class="sura_fullname"></div>
+			<div class="arabic bigAya"></div>
+        </div>
+		
+        <div class="page" id="Verification" style="display:none;">
+            <div class="tinted"></div>
+            <div class="searchresult"></div>
+            <div class="more" onclick="search('more')"><span>Load more...</span><img src="img/loader.gif"></div>
+        </div>
+        
+        <div id="modalBigAya" class="modal">
+            <div class="modal-content">
+                <div class="border">
+                    <div class="sura_fullname">Data not ready. Try again.</div>
+                    <div class="arabic">Data not ready. Try again.</div>
+                </div>
+            </div>
+        </div>
+
+		<script src="js/jquery2.1.4.min.js"></script>
+        <script src="js/removeDabt.js"></script>
+        <script src="js/Chart.min.js"></script>
+        <script src="lib/gridster/jquery.gridster.min.js"></script>
+		<script>
+            $(".gridster ul").gridster({
+                widget_margins: [10, 10],
+                widget_base_dimensions: [$(window).width()/8, $(window).width()/8],
+                resize: {
+                    enabled: false
+                }
+            });
+			$('.chartNumber').css({
+				'transform': 'scale('+$('.chartCard1').height()/200+')',
+				'transform-origin': '50% 0%'
+			});
+			/*
+			$('.bigAya.arabic').css({
+				'height' : $(window).height() - $('.bigAya.arabic').position().top - 180 + 'px',
+				'overflow-y' : 'scroll'
+			});
+			*/
+			$(document).ready(function(){			
+				reloadDashboard();
+				
+                //handling navigation
+                $('.container span').click(function(){
+                    if($(this).text()=='INJIN CARIAN') {
+						$('.searchpanel').addClass('show');
+						$('#Verification').show();
+						$('#Dashboard').hide();
+					}
+                    else {
+						$('.searchpanel').removeClass('show');
+						$('#Verification').hide();
+						$('#Dashboard').show();
+						reloadDashboard();
+					}
+                });
+                
+                //handling modal
+                $('.close').click(function(){ $('.modal').hide() });
+                window.onclick = function(event) { if ($(event.target).attr('class')=='modal') $('.modal').hide(); }
+			});
+            
+            var more = 0;
+            function search(type) {
+                if(type=='new') {
+                    more = 0;
+                    $('.searchresult').html('');
+					$('.searchpanel .sura_fullname').text('');
+					$('.bigAya.arabic').html('');
+                }
+                else {
+                    more += 10;
+                }
+                $('.more').show();
+                $('.more span, #nomatch').hide();
+                $('.more img').show();
+
+                var keyword = $('.searchbox').val().replace(/ ﴿.*?﴾ /g,' ');
+                
+                $.ajax({
+                    type: 	"POST",
+                    dataType: "json",
+                    url: "api/search.php",
+                    data: {"keyword":removeDhabt(keyword), "more":more},
+                    success: function(msg){
+                        var structure = '';
+                        keyword = keyword.split(' ');
+                        
+                        for(var a in msg) {
+                            //highlight keyword
+                            var special = [];
+                            var source = msg[a].sentence.split(' ');
+
+                            for(var s=0; s<source.length; s++) {
+                                for(var k=0; k<keyword.length; k++) {
+                                    if(keyword[k]==source[s]) {
+                                        special.push(removeDhabt(source[s]));
+                                        source[s] = '<ma tip="Both word and dhabt matched">'+source[s]+'</ma>';
+										console.log("Both word and dhabt matched: "+msg[a].sura_fullname);
+                                    }
+                                    else if(removeDhabt(keyword[k])==removeDhabt(source[s])) {
+                                        if(special.indexOf(removeDhabt(source[s]))>-1) {
+                                            source[s] = '<ma tip="Both word and dhabt matched">'+source[s]+'</ma>';
+											console.log("Both word and dhabt matched (2): "+msg[a].sura_fullname);
+                                        }
+                                        else {
+                                            source[s] = '<mw tip="Only word matched">'+source[s]+'</mw>';
+											console.log("Only word matched: "+msg[a].sura_fullname);
+                                        }
+                                    }
+                                }
+                            }
+                            structure += '<div id='+msg[a].id+' class=card onclick="showBigAya('+msg[a].id+')"><div class=sura_fullname>'+msg[a].sura_fullname+'</div><div class=arabic>'+source.join(' ')+'</div></div>';  
+                        }
+                        
+                        if(structure!='') {
+                            $('.searchresult').append(structure.replace(/(﴿.*?﴾)/g,'<n>$1</n>'));
+                            $('.more span').show();
+                            $('.more img').hide();
+                        }
+                        else if(more) {
+                            $('.more').hide();
+                        }
+                        else {
+                            $('.searchresult').append('<span id=nomatch>Your search <m>'+$('.searchbox').val()+'</m> did not match any aya.</span>');
+                            $('.more').hide();
+                        }
+                    }
+                });
+            }
+            
+            function showBigAya(id) {
+				/* modal approach
+                $('#modalBigAya .sura_fullname').text($('.card#'+id+' .sura_fullname').text());
+                $('#modalBigAya .arabic').html($('.card#'+id+' .arabic').html());
+                $('#modalBigAya').show();
+				*/
+				$('.searchpanel .sura_fullname').text($('.card#'+id+' .sura_fullname').text());
+                $('.bigAya.arabic').html($('.card#'+id+' .arabic').html());
+            }
+			
+			function login() {
+				var auth2 = gapi.auth2.getAuthInstance();
+				if(auth2.isSignedIn.get()) {
+					auth2.signOut();
+					$('#menuLogin').removeClass('google').html('Login');
+					$('#menuDashboard, #menuVerification').hide();
+					$('#menuEmpty').click();
+					ready = 0;
+				}
+				else {
+					$('.abcRioButtonContentWrapper').click();
+				}
+			}
+			
+			function onSignIn(googleUser) {
+				profile = googleUser.getBasicProfile();
+				$.get("api/userAuthentication.php?email="+profile.U3, function(data){
+					if(data=='true') {
+						$('#menuLogin').addClass('google').html('Login as '+profile.ofa+' '+profile.wea);
+						$('#menuDashboard, #menuVerification').show();
+						reloadDashboard();
+					}
+					else {
+						gapi.auth2.getAuthInstance().signOut();
+						$('#modalNotAuthorized').show();
+					}
+				});
+			}
+			
+			function reloadDashboard() {
+				$.get("api/mostVerifiedSura.php", function(data){
+					var _labels = [], _data = [];
+					for(var i in data) {
+						_labels.push(data[i].sura);
+						_data.push(data[i].val);
+					}
+					
+					var chartMostVerified = new Chart($('#chartMostVerified'),{
+						type: 'pie',
+						data: {
+							labels: _labels,
+							datasets: [
+								{
+									data: _data,
+									backgroundColor: ["#4D5360", "#F7464A", "#46BFBD", "#FDB45C", "#949FB1"]
+								}
+							]
+						},
+						options: {cutoutPercentage: 0, animation: false}
+					});
+					
+					isDashboardReady();
+				}, 'json');
+				
+				/*
+				$.get("api/mostActivePanel.php", function(data){
+					var html = '<tr><td>No.</td><td>Name</td><td>Activity</td></tr>';
+					for(var i=0; i<data.length; i++) html += '<tr><td>'+(i+1)+'</td><td>'+data[i].fullname+'</td><td>'+data[i].val+'</td></tr>';
+					$('.chartTable').html(html);
+					
+					isDashboardReady();
+				}, 'json');
+				*/
+				
+				$.get("api/totalQuestion.php", function(data){
+					data = data.split(',');
+					$('.chartCard1 .chartNumber').text(data[0]);
+					$('.chartCard2 .chartNumber').text(data[1]);
+					$('.chartCard3 .chartNumber').text(data[0]-data[1]);
+					
+					isDashboardReady();
+				});				
+			}
+			
+			var ready = 0;
+			function isDashboardReady() {
+				ready++;
+				if(ready==3) $('#menuDashboard').click();
+			}
+			
+			function hidePreloader() {
+				if($('.abcRioButtonContentWrapper').size()==0) {
+					setTimeout(hidePreloader, 3000);
+				}
+				else {
+					$('#menuLogin').show();
+					$('.preloader').hide();
+				}
+			}
+		</script>
+	</body>
+</html>
